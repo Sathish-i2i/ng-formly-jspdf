@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-pdf-export": [
+        "dist/ng-pdf-export"
+      ],
+      "ng-pdf-export/*": [
+        "dist/ng-pdf-export/*"
+      ]
+    }
   }
 }
