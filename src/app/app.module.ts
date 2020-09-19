@@ -1,5 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { NgPdfExportModule } from 'projects/ng-pdf-export/src/public_api';
 
 import { AppComponent } from './app.component';
 
@@ -8,9 +13,12 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgPdfExportModule,
+    ReactiveFormsModule,
+    FormlyBootstrapModule,
+    FormlyModule.forRoot({})
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
