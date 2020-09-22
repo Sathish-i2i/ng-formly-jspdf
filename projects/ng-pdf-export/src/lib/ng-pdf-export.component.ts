@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { jsPDF } from 'jspdf';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'ng-pdf-export',
@@ -95,6 +97,32 @@ export class NgPdfExportComponent implements OnInit {
     }
     popupWin.print();
     popupWin.onafterprint = popupWin.close();
+    // this.exportJsPdf(popupWin);
+    // this.exportHtml2pdf(popupWin);
+  }
+
+  exportJsPdf(popupWin) {
+    const content = popupWin.document.documentElement;
+    const pdf = new jsPDF('p', 'px', 'a4', true);
+    pdf.html(content , {
+      callback: function () {
+        pdf.save('test.pdf');
+        popupWin.close();
+      }
+    });
+  }
+
+  exportHtml2pdf(popupWin) {
+    const options = {
+      margin: 1,
+      filename : 'Our_awesome_file.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'cm', format: 'letter', orientation: 'portrait' }
+    };
+    const content = popupWin.document.documentElement;
+    html2pdf().from(content).set(options).save();
+    popupWin.close();
   }
 
   print(pdfHtmlContent: string, styles: string, title: string = 'form'): void {
