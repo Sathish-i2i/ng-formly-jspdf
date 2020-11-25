@@ -95,9 +95,9 @@ export class NgPdfExportComponent implements OnInit {
         popupWin.document.getElementById(id).value = '';
       });
     }
-    popupWin.print();
-    popupWin.onafterprint = popupWin.close();
-    // this.exportJsPdf(popupWin);
+    // popupWin.print();
+    // popupWin.onafterprint = popupWin.close();
+    this.exportJsPdf(popupWin);
     // this.exportHtml2pdf(popupWin);
   }
 
